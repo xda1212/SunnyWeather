@@ -6,6 +6,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('D:\\Android\\work_space\\SunnyWeather\\key\\sunny_weather_keys.jks')
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -18,10 +26,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+   /* signingConfigs{
+        config{
+            storeFile file('D:\\Android\\work_space\\SunnyWeather\\key\\sunny_weather_keys.jks')
+            storePassword 123456
+            keyPassword 123456
+            keyAlias 'key0'
+        }
+    }*/
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+           /* signingConfig signingConfigs.config*/
         }
     }
     compileOptions {
