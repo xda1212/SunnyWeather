@@ -1,6 +1,7 @@
 package com.example.sunnyweather.ui.place
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunnyweather.R
 import com.example.sunnyweather.databinding.FragmentPlaceBinding
+import com.example.sunnyweather.ui.weather.WeatherActivity
 
 
 class PlaceFragment : Fragment() {
@@ -24,7 +26,7 @@ class PlaceFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-//        return inflater.inflate(R.layout.fragment_place,container,false)
+
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_place,
             container,false)
         return binding.root
@@ -33,7 +35,19 @@ class PlaceFragment : Fragment() {
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        binding = FragmentPlaceBinding.inflate(layoutInflater)
+        if (viewModel.isPlaceSaved()){
+            val place = viewModel.getSavePlace()
+            val intent = Intent(context,WeatherActivity::class.java).apply {
+                putExtra("location_lng",place.location.lng)
+                putExtra("location_lat",place.location.lat)
+                putExtra("place_name",place.name)
+            }
+            startActivity(intent)
+            activity?.finish()
+            return
+        }
+
+
 
         val layoutManager = LinearLayoutManager(activity)
         binding.recyclerView.layoutManager = layoutManager
