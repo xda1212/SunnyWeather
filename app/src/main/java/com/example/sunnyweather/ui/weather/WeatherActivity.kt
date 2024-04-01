@@ -112,7 +112,7 @@ class WeatherActivity : AppCompatActivity() {
         val realtime  = weather.realtime
         val daily = weather.daily
         // 填充now.xml布局中数据
-        val currentTempText = "${realtime.temeperature.toInt()} ℃"
+        val currentTempText = "${realtime.temperature.toInt()} ℃"
         binding.includeNow.currentTemp.text = currentTempText
         binding.includeNow.currentSky.text = getSky(realtime.skycon).info
 

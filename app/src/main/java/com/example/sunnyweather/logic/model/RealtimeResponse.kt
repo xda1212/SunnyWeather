@@ -13,7 +13,7 @@ data class RealtimeResponse(
 
     data class Realtime(
         val skycon: String,
-        val temeperature: Float,
+        val temperature: Float,
         @SerializedName("air_quality")val air_quality: AirQuality
     )
 
